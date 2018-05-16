@@ -1,0 +1,41 @@
+version: '2'
+services:
+        host1:
+                image: host_debian
+                stdin_open: true
+                privileged: true
+                networks:
+                        vt_sucks_net:
+                                ipv4_address: 4.8.1.2
+        host2: 
+                image: host_debian
+                stdin_open: true
+                privileged: true
+                networks:
+                        vt_sucks_net:
+                                ipv4_address: 4.8.1.3
+
+        host3:
+                image: host_debian
+                stdin_open: true
+                privileged: true
+                networks:
+                        vt_sucks_net:
+                                ipv4_address: 4.8.1.4
+
+        host4:
+                image: host_debian
+                stdin_open: true
+                privileged: true
+                networks:
+                        vt_sucks_net:
+                                ipv4_address: 4.8.1.5
+
+        
+networks:
+        vt_sucks_net:
+                driver: bridge
+                ipam:
+                        driver: default
+                        config:
+                                - subnet: 4.8.1.0/24
