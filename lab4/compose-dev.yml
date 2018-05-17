@@ -1,6 +1,9 @@
-version: '2'
+version: '3'
 services:
         host1:
+                command: /all/configs/v1_ipv4/init_1.sh
+                volumes:
+                        - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
@@ -8,6 +11,9 @@ services:
                         vt_sucks_net:
                                 ipv4_address: 4.8.1.2
         host2: 
+                command: /all/configs/v1_ipv4/init_2.sh
+                volumes:
+                        - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
@@ -16,6 +22,9 @@ services:
                                 ipv4_address: 4.8.1.3
 
         host3:
+                command: /all/configs/v1_ipv4/init_3.sh
+                volumes:
+                        - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
@@ -24,6 +33,9 @@ services:
                                 ipv4_address: 4.8.1.4
 
         host4:
+                command: /all/configs/v1_ipv4/init_4.sh
+                volumes:
+                        - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
