@@ -1,53 +1,67 @@
-version: '3'
+version: '2.1'
 services:
         host1:
-                command: /all/configs/v1_ipv4/init_1.sh
+                command: /all/configs/v1_ipv6/init_1.sh
                 volumes:
                         - ./:/all
                 image: host_debian
                 stdin_open: true
+                sysctls:
+                        - net.ipv6.conf.all.disable_ipv6=0
                 privileged: true
                 networks:
                         vt_sucks_net:
                                 ipv4_address: 4.8.1.2
+                                ipv6_address: 1::FFFF:408:102
         host2: 
-                command: /all/configs/v1_ipv4/init_2.sh
+                command: /all/configs/v1_ipv6/init_2.sh
                 volumes:
                         - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
+                sysctls:
+                        - net.ipv6.conf.all.disable_ipv6=0
                 networks:
                         vt_sucks_net:
                                 ipv4_address: 4.8.1.3
+                                ipv6_address: 1::FFFF:408:103
 
         host3:
-                command: /all/configs/v1_ipv4/init_3.sh
+                command: /all/configs/v1_ipv6/init_3.sh
                 volumes:
                         - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
+                sysctls:
+                        - net.ipv6.conf.all.disable_ipv6=0
                 networks:
                         vt_sucks_net:
                                 ipv4_address: 4.8.1.4
+                                ipv6_address: 1::FFFF:408:104
 
         host4:
-                command: /all/configs/v1_ipv4/init_4.sh
+                command: /all/configs/v1_ipv6/init_4.sh
                 volumes:
                         - ./:/all
                 image: host_debian
                 stdin_open: true
                 privileged: true
+                sysctls:
+                        - net.ipv6.conf.all.disable_ipv6=0
                 networks:
                         vt_sucks_net:
                                 ipv4_address: 4.8.1.5
+                                ipv6_address: 1::FFFF:0408:0105
 
         
 networks:
         vt_sucks_net:
                 driver: bridge
+                enable_ipv6: true
                 ipam:
                         driver: default
                         config:
                                 - subnet: 4.8.1.0/24
+                                - subnet: 1::FFFF:0408:0100/120
