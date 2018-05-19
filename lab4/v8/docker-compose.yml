@@ -1,0 +1,50 @@
+version: '2'
+services:
+  v8-ubuntu00:
+    command: /all/host1.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    networks:
+      lab4-v8-network:
+        ipv4_address: 4.8.8.20
+  v8-ubuntu01:
+    command: /all/host2.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    networks:
+      lab4-v8-network:
+        ipv4_address: 4.8.8.30
+  v8-ubuntu02:
+    command: /all/host3.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    networks:
+      lab4-v8-network:
+        ipv4_address: 4.8.8.40
+  v8-ubuntu03:
+    command: /all/host4.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    networks:
+      lab4-v8-network:
+        ipv4_address: 4.8.8.50
+
+networks:
+  lab4-v8-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 4.8.8.0/24

@@ -1,0 +1,59 @@
+version: '2.1'
+services:
+  v8-ubuntu00:
+    command: /all/host1.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    sysctls:
+        - net.ipv6.conf.all.disable_ipv6=0
+    networks:
+      lab4-v8-network:
+        ipv6_address: 1::FFFF:0408:0814
+  v8-ubuntu01:
+    command: /all/host2.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    sysctls:
+            - net.ipv6.conf.all.disable_ipv6=0
+    networks:
+      lab4-v8-network:
+        ipv6_address: 1::FFFF:0408:081E
+  v8-ubuntu02:
+    command: /all/host3.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    sysctls:
+            - net.ipv6.conf.all.disable_ipv6=0
+    networks:
+      lab4-v8-network:
+        ipv6_address: 1::FFFF:0408:0828
+  v8-ubuntu03:
+    command: /all/host4.sh
+    volumes:
+            - ./:/all
+    build: .
+    stdin_open: true
+    privileged: true
+    sysctls:
+            - net.ipv6.conf.all.disable_ipv6=0
+    networks:
+      lab4-v8-network:
+        ipv6_address: 1::FFFF:0408:0832
+
+networks:
+  lab4-v8-network:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+              - subnet: 1::FFFF:0408:0800/120
